@@ -1,14 +1,14 @@
 // Kirim Pesan
-var messages = document.getElementById("messages");
-var textbox = document.getElementById("textbox");
-var button = document.getElementById("button");
+// var messages = document.getElementById("messages");
+// var textbox = document.getElementById("textbox");
+// var button = document.getElementById("button");
 
-button.addEventListener("click",function(){
-    var newMessage = document.createElement("li");
-    newMessage.innerHTML = textbox.value;
-    messages.appendChild(newMessage);
-    textbox.value = "";
-});
+// button.addEventListener("click",function(){
+//     var newMessage = document.createElement("li");
+//     newMessage.innerHTML = textbox.value;
+//     messages.appendChild(newMessage);
+//     textbox.value = "";
+// });
 
 // Kirim Pesan
 
@@ -58,57 +58,48 @@ window.addEventListener("scroll", () => {
 // ScrollTop
 
 // Audio
-const sounds = ['applause', 'tada'];
+// const sounds = ['applause', 'tada'];
 
-sounds.forEach((sound) => {
-    const btn = document.createElement('button');
-    btn.classList.add('btn-song');
+// sounds.forEach((sound) => {
+//     const btn = document.createElement('button');
+//     btn.classList.add('btn-song');
 
-    btn.innerText = sound;
-    btn.addEventListener('click', ()=>{
-        stopSongs();
-        document.getElementById(sound).play()
+//     btn.innerText = sound;
+//     btn.addEventListener('click', ()=>{
+//         stopSongs();
+//         document.getElementById(sound).play()
 
-    });
+//     });
 
-    document.getElementById('buttons').appendChild(btn);
-});
+//     document.getElementById('buttons').appendChild(btn);
+// });
 
-function stopSongs() {
-    sounds.forEach((sound) => {
-        const song = document.getElementById(sound);
+// function stopSongs() {
+//     sounds.forEach((sound) => {
+//         const song = document.getElementById(sound);
 
-        song.pause();
-        song.currentTime = 0;
-    });
-}
+//         song.pause();
+//         song.currentTime = 0;
+//     });
+// }
 // Audio
 
-// Cursor Mouse
-let innerCursor = document.querySelector('.inner-cursor');
-let outerCursor = document.querySelector('.outer-cursor');
 
-document.addEventListener("mousemove",moveCursor);
-
-function moveCursor(e) {
-    let x = e.clientX;
-    let y = e.clientY;
-    console.log(x,y)
-    innerCursor.style.left = `${x}px`;
-    innerCursor.style.top = `${y}px`;
-    outerCursor.style.left = `${x}px`;
-    outerCursor.style.top = `${y}px`;
-}
-
-let links = Array.from(document.querySelectorAll("a"));
-console.log(links);
-
-links.forEach((link) => {
-    link.addEventListener("mouseover", () => {
-        innerCursor.classList.add("grow");
-    });
-    link.addEventListener("mouseleave", () => {
-        innerCursor.classList.remove("grow");
-    });
-});
-// Cursor Mouse
+// JS Navbar
+    const body = document.querySelector("body");
+    const navbar = document.querySelector(".navbar");
+    const menuBtn = document.querySelector(".menu-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    menuBtn.onclick = ()=>{
+      navbar.classList.add("show");
+      menuBtn.classList.add("hide");
+      body.classList.add("disabled");
+    }
+    cancelBtn.onclick = ()=>{
+      body.classList.remove("disabled");
+      navbar.classList.remove("show");
+      menuBtn.classList.remove("hide");
+    }
+    window.onscroll = ()=>{
+      this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+    }

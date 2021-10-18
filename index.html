@@ -7,28 +7,43 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Web Profile</title>
 </head>
 <body>
     
-  <div class="inner-cursor"></div>
-  <div class="outer-cursor"></div>
-  
-    <!-- Navigasi -->
-    <nav>
-      <input type="checkbox" name="" id="check">
-        <label for="check">
-          <i class="material-icons" id="btn">subject</i>
-          <i class="material-icons" id="close">close</i>
-        </label>
-          <h2>Web Husain</h2>
-          <ul>
+  <!-- Loader -->
+  <div class="loader_bg">
+    <div class="loader"></div>
+  </div>
+  <!-- Loader -->
+
+  <!-- Navigasi -->
+     <nav class="navbar">
+        <div class="content">
+          <div class="logo">
+            <a href="#">Web Husain</a>
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
             <li><a href="#">Beranda</a></li>
             <li><a href="#about">Tentang Saya</a></li>
             <li><a href="#contact">Kontak</a></li>
           </ul>
-    </nav>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </nav>
     <!-- Akhir Navigasi -->
+
+    <!-- Scroll Top -->
+    <a href="#" class="to-top">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+    <!-- Scroll Top -->
 
     <!-- Hero -->
     <div class="hero-image">
@@ -131,7 +146,7 @@
               </div>
             </div>
               <div class="container-dua">
-                <!-- Hard Skills -->
+              <!-- Hard Skills -->
               <div class="kolom-satu">
                 <section>
                   <h2>Hard Skills</h2>
@@ -186,40 +201,37 @@
                 </section>
               </div>
               <!-- Soft Skills -->
-              </div>
-              
+              </div> 
         </div>
 
         <!-- Sidebar Satu -->
         <div class="sidebar-satu">
           <section>
-            <h2>Media Sosial</h2>
-            <a href="https://facebook.com/HusainT123" target="_blank" class="fb"><i class="fab fa-facebook-square"></i></a>
-            <a href="https://twitter.com/schenhovic" target="_blank" class="tw"><i class="fab fa-twitter-square"></i></a>
-            <a href="https://instagram.com/schenhovic" target="_blank" class="ig"><i class="fab fa-instagram-square"></i></a>
+            <h2>Media Sosial</h2>        
+            <a href="https://instagram.com/txtdarihusain" target="_blank" class="ig"><i class="fab fa-instagram-square"></i></a>
             <a href="https://linkedin.com/in/husain-taufiqqurrahman/"   target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/opickbintang19" target="_blank" class="github"><i class="fab fa-github-square"></i></a>
             <a href="mailto:opick.bintang1@gmail.com" target="_blank" class="gmail"><i class="fas fa-envelope-square"></i></a>
           </section>
           
-          <section>
+          <!-- <section>
             <h2>Kirim Pesan</h2>
             <ul id="messages"></ul>
             <input id="textbox" type="text">
             <button id="button">Kirim</button>
-          </section>
+          </section> -->
 
           <section>
             <h2>Jam Digital</h2>
             <div id="clock"></div>
           </section>
 
-          <section>
+          <!-- <section>
             <h2>Efek Suara</h2>
             <audio src="audio/applause.mp3" id="applause"></audio>
             <audio src="audio/tada.mp3" id="tada"></audio>
             <div id="buttons"></div>
-          </section>
+          </section> -->
                         
           </div>
         <!-- Akhir Sidebar Satu -->
@@ -234,12 +246,12 @@
       <div class="form">
         <section id="contact">
           <div class="box">
-            <form>
+            <form name="formHusain">
               <input type="text" class="form-control" name="namaDepan" placeholder="Nama Depan" required><br>
               <input type="text" class="form-control" name="namaBelakang" placeholder="Nama Belakang" required><br>
               <input type="email" class="form-control" name="email" placeholder="Email" required><br>
-              <textarea name="pesan" class="form-control" rows="4" placeholder="Pesan"></textarea><br>
-              <input type="submit" class="form-control submit" value="KIRIM">
+              <textarea name="pesan" class="form-control" name="pesan" rows="4" placeholder="Pesan"></textarea><br>
+              <button type="submit" class="form-control submit">KIRIM</button>
             </form>
           </div>
         </section>
@@ -247,14 +259,33 @@
     </div>
     <!-- Form -->
 
-    <a href="#" class="to-top">
-      <i class="fas fa-chevron-up"></i>
-    </a>
-
     <footer>
-      <p>Copyright 2021</p>
+      <p>Made with ❤️ in Surabaya</p>
     </footer>
     
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        setTimeout(function(){
+            $('.loader_bg').fadeToggle();
+        }, 1500);
+    </script>
+
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzNGWZlB3l1-q7iqydYS-5fZcI1fcqg4NxxYSYVG9E6qXbHPkAvo-eN658Z2_IiEi4S/exec'
+      const form = document.forms['formHusain']
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            alert("Data sudah terkirim, Terima Kasih!")
+            form.reset();
+            console.log('Success!', response)
+        })
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+
 </body>
 </html>
